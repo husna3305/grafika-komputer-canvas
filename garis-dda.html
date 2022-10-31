@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=500, initial-scale=1.0">
+  <title>Titik</title>
+</head>
+<style>
+  #myCanvas {
+    border: 1px solid black;
+  }
+</style>
+
+<body>
+  <canvas id="myCanvas" width="400" height="400"></canvas>
+  <script>
+    myCanvas = document.querySelector('#myCanvas');
+    var context = myCanvas.getContext("2d");
+
+
+    function buatDda(x1, y1, x2, y2) {
+      dx = x2 - x1;
+      dy = y2 - y1;
+
+      if (dx > dy) {
+        step = dx
+      } else {
+        step = dy
+      }
+      console.log(step);
+
+      x_increment = dx / step;
+      y_increment = dy / step;
+
+      for (i = 0; i <= step; i++) {
+        context.fillRect(x1, y1, 1, 1);
+        x1 += x_increment;
+        y1 += y_increment;
+      }
+    }
+
+    buatDda(2, 1, 180, 50)
+  </script>
+</body>
+
+</html>

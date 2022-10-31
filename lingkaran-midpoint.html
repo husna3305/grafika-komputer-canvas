@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=500, initial-scale=1.0">
+  <title>Titik</title>
+</head>
+<style>
+  #myCanvas {
+    border: 1px solid black;
+  }
+</style>
+
+<body>
+  <canvas id="myCanvas" width="400" height="400"></canvas>
+  <script>
+    myCanvas = document.querySelector('#myCanvas');
+    var context = myCanvas.getContext("2d");
+
+
+    function midpointLingkaran(r, center) {
+      // Penentuan nilai awal
+      x_increment = 0;
+      y_increment = r;
+      p = 1 - r;
+      while (x_increment <= y_increment) {
+        //Kuadran I
+        context.fillStyle = "black";
+        context.fillRect(x_increment + center, y_increment + center, 1, 1);
+        context.fillRect(y_increment + center, x_increment + center, 1, 1);
+
+        // Kuadran II
+        context.fillStyle = "blue";
+        context.fillRect(y_increment + center, -x_increment + center, 1, 1);
+        context.fillRect(x_increment + center, -y_increment + center, 1, 1);
+
+        // Kuadran III
+        context.fillStyle = "red";
+        context.fillRect(-x_increment + center, -y_increment + center, 1, 1);
+        console.log(-x_increment + center, -y_increment + center)
+        context.fillRect(-y_increment + center, -x_increment + center, 1, 1);
+
+        // Kuadran IV
+        context.fillStyle = "green";
+        context.fillRect(-y_increment + center, x_increment + center, 1, 1);
+        context.fillRect(-x_increment + center, y_increment + center, 1, 1);
+
+        // Penentuan selanjutnya
+        if (p < 0) {
+          x_increment = x_increment + 1;
+          y_increment = y_increment;
+          p = p + 2 * x_increment + 1;
+        } else {
+          x_increment = x_increment + 1;
+          y_increment = y_increment - 1;
+          p = p + 2 * x_increment + 1 - 2 * y_increment;
+        }
+      }
+    }
+
+    midpointLingkaran(10, 100);
+  </script>
+</body>
+
+</html>
